@@ -1,0 +1,47 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | MiniTwit</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>MiniTwit</h1>
+
+
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class=flashes>
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+
+
+  <div class= body >
+    sadasdasda
+  </div>
+
+  <div class=body>
+  {% block body %}
+  <ul class=messages>
+  {% for message in messages %}
+    <li><img src="{{ message.email|gravatar(size=48) }}"><p>
+      <strong><a href="{{ url_for('user_timeline', username=message.username)
+      }}">{{ message.username }}</a></strong>
+      {{ message.text }}
+      <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
+  {% else %}
+    <li><em>There's no message so far.</em>
+  {% endfor %}
+  </ul>
+  {% endblock %}
+  </div>
+
+
+  <div class=footer>
+    MiniTwit &mdash; A Flask Application
+  </div>
+
+
+</div>
+
