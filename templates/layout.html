@@ -1,10 +1,12 @@
-<!doctype html>
+<!Doctype html>
+<html>
+<body>
 <title>{% block title %}Welcome{% endblock %} | MiniTwit</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <h1>MiniTwit</h1>
+  <h1>MiniTwit</h1>  
 
-
+<!-- 에러 메세지 확인창인듯함 -->
   {% with flashes = get_flashed_messages() %}
     {% if flashes %}
       <ul class=flashes>
@@ -15,33 +17,29 @@
     {% endif %}
   {% endwith %}
 
-
-
-  <div class= body >
-    sadasdasda
+  <div class = chatscreen>
+    chat chat chat cha
   </div>
-
-  <div class=body>
-  {% block body %}
-  <ul class=messages>
-  {% for message in messages %}
-    <li><img src="{{ message.email|gravatar(size=48) }}"><p>
-      <strong><a href="{{ url_for('user_timeline', username=message.username)
-      }}">{{ message.username }}</a></strong>
-      {{ message.text }}
-      <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
-  {% else %}
-    <li><em>There's no message so far.</em>
-  {% endfor %}
-  </ul>
-  {% endblock %}
+  <div class = elicscreen>
+    {% block body %}
+    <ul class=messages>
+    {% for message in messages %}
+      <li><img src="{{ message.email|gravatar(size=48) }}"><p>
+        <strong><a href="{{ url_for('user_timeline', username=message.username)
+        }}">{{ message.username }}</a></strong>
+        {{ message.text }}
+        <small>&mdash; {{ message.pub_date|datetimeformat }}</small>
+    {% else %}
+      <li><em>There's no message so far.</em>
+    {% endfor %}
+    </ul>
+    {% endblock %}
   </div>
-
 
   <div class=footer>
     MiniTwit &mdash; A Flask Application
   </div>
-
-
+</body>
 </div>
+</html>>
 
